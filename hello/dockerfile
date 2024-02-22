@@ -1,0 +1,9 @@
+FROM gcc:latest
+
+WORKDIR /home/omniq/src/languages-erdrollinger-s-spring2024/
+
+COPY ./ /home/omniq/src/languages-erdrollinger-s-spring2024/
+
+RUN g++ ./hello.cpp -o cheers
+
+RUN ./cheers

@@ -12,7 +12,7 @@ public:
     }
 
 private:
-    int size;
+    const int size;
 };
 
 class Chicken {
@@ -24,7 +24,7 @@ public:
     }
 
 private:
-    std::vector<Egg> eggs;
+    const std::vector<Egg> eggs;
 };
 
 int main() {

@@ -53,3 +53,61 @@ Templates, particularly in the context of programming languages like C++, can be
     Expressiveness and Abstraction: Templates contribute to the expressiveness and abstraction capabilities of a programming language, allowing developers to write more generic, reusable code. This is similar to the way functional programming emphasizes abstraction and the use of functions to encapsulate behavior. Templates provide a powerful tool for abstraction at the type level, complementing the value-level abstraction offered by functions in functional programming.
 
 In conclusion, templates embody a meta-functional style through their capabilities for generic programming, compile-time code generation, type manipulation, and meta-programming. While not functional programming in the traditional sense, the template mechanism shares functional programming's goals of abstraction, code reuse, and expressiveness, operating at a meta-level to manipulate and generate code.
+
+Can you write an example of functional style code in C++? The program should have objects called "chickens", and each chicken should have an array of objects called "eggs" that belong to it.
+ChatGPT
+
+Certainly! Writing functional-style code in C++ involves emphasizing immutable data, pure functions, and, often, using features like std::function, lambdas, and algorithms from the Standard Template Library (STL) that support functional programming paradigms. However, since C++ is not a purely functional language and deals with objects and state, this example will strike a balance, aiming for a functional approach within the OOP paradigm of C++.
+
+We will create a simple program where a Chicken object contains a collection of Egg objects. We'll use STL containers and algorithms to manage these objects functionally. This example won't fully adhere to functional programming principles, such as complete immutability, due to the object-oriented nature of C++, but it will demonstrate a functional approach to handling data and operations.
+
+cpp
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+class Egg {
+public:
+    Egg(int size) : size(size) {}
+
+    int getSize() const {
+        return size;
+    }
+
+private:
+    int size;
+};
+
+class Chicken {
+public:
+    Chicken(std::initializer_list<Egg> eggs) : eggs(eggs) {}
+
+    void forEachEgg(std::function<void(const Egg&)> action) const {
+        std::for_each(eggs.begin(), eggs.end(), action);
+    }
+
+private:
+    std::vector<Egg> eggs;
+};
+
+int main() {
+    // Create a chicken with some eggs
+    Chicken chicken{{Egg(1), Egg(2), Egg(3)}};
+
+    // Print the size of each egg using a functional approach
+    chicken.forEachEgg([](const Egg& egg) {
+        std::cout << "Egg size: " << egg.getSize() << std::endl;
+    });
+
+    return 0;
+}
+
+In this example:
+
+    The Egg class represents an egg with a simple property size.
+    The Chicken class contains a collection of Egg objects, initialized via an initializer list for simplicity. It also provides a method forEachEgg that accepts a function (or lambda) and applies it to each Egg in its collection. This method allows us to operate on each egg in a functional style, providing a way to apply any operation (represented as a lambda or function object) to all eggs.
+    In the main function, we create a Chicken object with a list of Egg objects. We then use the forEachEgg method to iterate over each egg, printing its size. The lambda function passed to forEachEgg acts as a pure function that operates on the Egg objects, demonstrating a functional approach to interacting with object collections in C++.
+
+This example demonstrates how you can apply functional programming concepts in C++ by using lambdas, STL algorithms, and functional arguments to work with objects and collections in a more functional style.

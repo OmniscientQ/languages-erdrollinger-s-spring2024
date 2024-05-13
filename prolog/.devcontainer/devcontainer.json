@@ -1,0 +1,16 @@
+{
+    "name": "SWI-Prolog",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "settings": { 
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "ms-vscode.cpptools",
+      "vscprolog.prolog"
+    ],
+    "forwardPorts": [5000], // Adjust if you're using specific ports
+    "postCreateCommand": "swipl"
+  }
+  
